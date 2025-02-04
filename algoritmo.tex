@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{color}
+
+\begin{document}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwIn{$\text{texto}$}
+\KwOut{$\text{oraciones}$}
+
+\caption{Proceso de extraccion de parrafos y palabras clave}
+
+\textbf{1. Generar párrafos}\;
+\Indp
+\For{$i = 0$ \textbf{to} \texttt{len(oraciones)} - 1}{
+    \If{$i = 0$}{
+        \texttt{parrafos.append(oraciones[i])}\;
+    }
+    \texttt{similitud} $\gets$ \texttt{calcular\_similitud(oraciones[i], oraciones[i+1])}\;
+    \If{$\text{similitud} > 0.8$}{
+        \texttt{parrafos[-1]} $\gets$ \texttt{parrafos[-1] + oraciones[i+1]}\;
+    }
+    \Else{
+        \texttt{parrafos.append(oraciones[i+1])}\;
+    }
+}
+\texttt{return} las oraciones generadas\;
+\Indm
+\end{algorithm}
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwIn{$\text{oracion}$}
+\KwOut{$\text{palabras clave}$}
+\caption{Proceso de obtencion de palabras clave}
+
+\textbf{2. Obtener palabras clave de una oracion}\;
+\Indp
+\texttt{bert\_ids} $\gets$ tokenizar la oración\;
+\texttt{bert\_outputs} $\gets$ procesar la entrada mediante el modelo\;
+\texttt{tokens} $\gets$ convertir los ids de los tokens a palabras\;
+\texttt{word\_importance} $\gets$ calcular la importancia de cada palabra\;
+\texttt{word\_score\_pairs} $\gets$ emparejar las palabras con su importancia\;
+\texttt{palabras\_clave} $\gets$ seleccionar las 3 palabras más importantes\;
+\texttt{return} las palabras clave\;
+\Indm
+
+\end{algorithm}
+\end{document}
