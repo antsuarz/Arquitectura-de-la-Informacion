@@ -57,6 +57,7 @@ def procesar_html(nombre):
         with open("./salidas/" + nombre, 'a', encoding='utf-8') as file:
             file.write(f"<h2>{pkey}</h2>\n")
             file.write(f"<p>{parrafo}</p>\n")
+    print("HTML GENERADO")
 
 
 def obtener_palabras_clave(oracion): 
@@ -75,4 +76,4 @@ def obtener_palabras_clave(oracion):
     return palabras_clave
 
 
-procesar_html("1.html")
+procesar_html("6.html")
